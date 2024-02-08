@@ -34,13 +34,13 @@ public class RecruiterController : Controller
                 }
             }
 
-            return RedirectToAction("RegistrationSucess");
+            return RedirectToAction("RegistrationSuccess");
         }
 
         return View(recruiter);
     }
 
-    public IActionResult RegistrationSucess()
+    public IActionResult RegistrationSuccess()
     {
         return View();
     }

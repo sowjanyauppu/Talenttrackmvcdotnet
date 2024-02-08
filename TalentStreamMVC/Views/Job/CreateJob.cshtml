@@ -1,0 +1,58 @@
+﻿@model TalentStreamMVC.Models.Job
+@{
+    ViewData["Title"] = "Create Job";
+}
+
+<h2>Create Job</h2>
+
+<form asp-controller="Job" asp-action="CreateJob" method="post">
+    <div class="form-group">
+        <input type="text" name="recruiterId" value="2" style="visibility:hidden" />
+    </div>
+    <div class="form-group">
+        <label asp-for="JobTitle"></label>
+        <input asp-for="JobTitle" class="form-control" />
+        <span asp-validation-for="JobTitle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MinExperience"></label>
+        <input asp-for="MinExperience" class="form-control" />
+        <span asp-validation-for="MinExperience" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaxExperience"></label>
+        <input asp-for="MaxExperience" class="form-control" />
+        <span asp-validation-for="MaxExperience" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MinSalary"></label>
+        <input asp-for="MinSalary" class="form-control" />
+        <span asp-validation-for="MinSalary" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaxSalary"></label>
+        <input asp-for="MaxSalary" class="form-control" />
+        <span asp-validation-for="MaxSalary" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RequiredSkills"></label>
+        <input asp-for="RequiredSkills" class="form-control" />
+        <span asp-validation-for="RequiredSkills" class="text-danger"></span>
+        <small class="form-text text-muted">Enter skills as a comma-separated list (e.g., C#, Java, JavaScript).</small>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create Job" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js"></script>
+}
+
