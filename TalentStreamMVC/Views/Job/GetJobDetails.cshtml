@@ -1,0 +1,33 @@
+﻿@model TalentStreamMVC.Models.Job
+@{
+    ViewData["Title"] = "Job Details";
+}
+
+<h2>Job Details</h2>
+
+@if (Model != null)
+{
+    <dl>
+        <dt>Job ID:</dt>
+        <dd>@Model.JobId</dd>
+
+        <dt>Job Title:</dt>
+        <dd>@Model.JobTitle</dd>
+
+        <dt>Min Experience:</dt>
+        <dd>@Model.MinExperience</dd>
+
+        <dt>Max Experience:</dt>
+        <dd>@Model.MaxExperience</dd>
+
+        <dt>Min Salary:</dt>
+        <dd>@Model.MinSalary</dd>
+
+        <dt>Max Salary:</dt>
+        <dd>@Model.MaxSalary</dd>        
+    </dl>
+}
+else
+{
+    <p>Job details not found.</p>
+}

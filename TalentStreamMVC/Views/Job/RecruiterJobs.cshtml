@@ -1,0 +1,10 @@
+﻿@* @model List<TalentStreamMVC.Models.Job> *@
+
+@{
+    ViewData["Title"] = "Recruiter Jobs";
+}
+
+<h2>Jobs Posted by Recruiter</h2>
+
+
+@await Html.PartialAsync("Shared/_JobList")

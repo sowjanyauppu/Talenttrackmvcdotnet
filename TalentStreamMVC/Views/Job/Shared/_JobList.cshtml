@@ -1,0 +1,39 @@
+﻿@{
+    List<Job>? recruiterJobs = (List<Job>?)ViewData["JobsList"];
+}
+@if (recruiterJobs != null && recruiterJobs.Count() > 0)
+{
+    <div class="card p-2">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Job ID</th>
+                        <th>Job Title</th>
+                        <th>Min Experience</th>
+                        <th>Max Experience</th>
+                        <th>Min Salary</th>
+                        <th>Max Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var job in recruiterJobs)
+                    {
+                        <tr>
+                            <td>@job.JobId</td>
+                            <td>@job.JobTitle</td>
+                            <td>@job.MinExperience</td>
+                            <td>@job.MaxExperience</td>
+                            <td>@job.MinSalary</td>
+                            <td>@job.MaxSalary</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <p>No jobs found.</p>
+}
