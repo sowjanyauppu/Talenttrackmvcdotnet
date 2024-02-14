@@ -1,1 +1,9 @@
-﻿<h1>Registred Successfully</h1>
+﻿@{
+    ViewData["Title"] = "Registration Success";
+}
+
+<div>
+    <h2>Registration Successful</h2>
+    <p>Your account has been registered successfully.</p>
+    <p>Click <a href="@Url.Action("Login", "Recruiter")">here</a> to login.</p>
+</div>

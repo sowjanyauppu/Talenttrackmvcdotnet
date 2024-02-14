@@ -17,7 +17,7 @@ public class JobController : Controller
     {
         if (ModelState.IsValid)
         {
-            // Check if the recruiter with the given ID exists
+            
             bool recruiterExists = CheckRecruiterExists(recruiterId);
 
             if (!recruiterExists)
@@ -55,9 +55,7 @@ public class JobController : Controller
                 TempData["NewJobId"] = jobId;
                 var skills = string.Join(",", job.RequiredSkills).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                             .Select(skill => skill.Trim()).ToArray();
-
-
-                // Insert skills into JobSkills table
+               
                 foreach (var skill in skills)
                 {
                     var insertSkillsQuery = "INSERT INTO JobSkills (JobId, SkillId) " + "VALUES (@JobId, @SkillId)";
@@ -65,9 +63,7 @@ public class JobController : Controller
                     using (var command = new MySqlCommand(insertSkillsQuery, connection))
                     {
                         command.Parameters.AddWithValue("@JobId", jobId);
-                        // Assuming SkillId corresponds to the SkillId in the Skills table
                         command.Parameters.AddWithValue("@SkillId", GetOrCreateSkillId(skill, connection));
-
                         command.ExecuteNonQuery();
                     }
                 }
@@ -81,7 +77,7 @@ public class JobController : Controller
 
     private int GetOrCreateSkillId(string skill, MySqlConnection connection)
     {
-        // Check if the skill already exists in the Skills table
+        
         var checkSkillQuery = "SELECT SkillId FROM Skills WHERE SkillName = @SkillName";
         using (var command = new MySqlCommand(checkSkillQuery, connection))
         {
@@ -93,16 +89,13 @@ public class JobController : Controller
                 return Convert.ToInt32(existingSkillId);
             }
         }
-
-        // If the skill doesn't exist, insert it and return the generated SkillId
+        
         var insertSkillQuery = "INSERT INTO Skills (SkillName) VALUES (@SkillName)";
         using (var command = new MySqlCommand(insertSkillQuery, connection))
         {
             command.Parameters.AddWithValue("@SkillName", skill);
             command.ExecuteNonQuery();
         }
-
-        // Get the SkillId of the newly inserted skill
         var getSkillIdQuery = "SELECT LAST_INSERT_ID()";
         using (var command = new MySqlCommand(getSkillIdQuery, connection))
         {
@@ -121,7 +114,7 @@ public class JobController : Controller
         {
             connection.Open();
 
-            var query = "SELECT COUNT(*) FROM Recruiters WHERE recruiterId = @RecruiterId";
+            var query = "SELECT COUNT(*) FROM Recruiters WHERE Id = @RecruiterId";
             using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@RecruiterId", recruiterId);
